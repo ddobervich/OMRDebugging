@@ -22,16 +22,32 @@ public class VisualTester extends PApplet {
 	int w = 1200;
 	int h = 900;
 
+	
+	int topLeftCenterRow = 113;
+	int topLeftCenterCol = 456;
+	int verticalSpace = 37;
+	int horizontalSpace = 37;
+	
 	public void setup() {
 		size(w, h);
-		images = PDFHelper.getPImagesFromPdf("/omrtest.pdf");
+		images = PDFHelper.getPImagesFromPdf("/omrtest2.pdf");
 	}
 
 	public void draw() {
 		background(255);
 		if (images.size() > 0) {
 			current_image = images.get(currentImageIndex);
+			
 			image(current_image, 0, 0);			// display image i
+			fill(0);
+			for (int rowImage = topLeftCenterRow; rowImage < 350; rowImage += verticalSpace) {
+				for (int colImage = topLeftCenterCol; colImage < 1000; colImage += horizontalSpace) {
+					fill(0);
+					noFill();
+					rect(rowImage, colImage, verticalSpace, horizontalSpace);
+				}
+			}
+			text(mouseX + " " + mouseY, 30, 30);
 		}
 	}
 

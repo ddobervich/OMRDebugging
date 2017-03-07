@@ -35,9 +35,16 @@ public class Main {
 		for (int i = 1; i < images.size(); i++) {
 			PImage image = images.get(i);
 
-			AnswerSheet answers = markReader.processPageImage(image);
-
-			// do something with answers
+			AnswerSheet answers = markReader.processPageImage(image);			
+			scoredSheets.add(answers);	
+		}
+		for(AnswerSheet a : scoredSheets) {
+			for(String answer : a.answers) {
+				System.out.print(answer);
+			}
+			System.out.println();
+			System.out.println();
+			System.out.println();
 		}
 	}
 }
