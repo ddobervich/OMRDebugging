@@ -40,7 +40,7 @@ public class VisualTester extends PApplet {
 			
 			image(current_image, 0, 0);			// display image i
 			fill(0);
-			for (int rowImage = topLeftCenterRow; rowImage < 350; rowImage += verticalSpace) {
+			for (int rowImage = topLeftCenterRow; rowImage < 800; rowImage += verticalSpace) {
 				for (int colImage = topLeftCenterCol; colImage < 1000; colImage += horizontalSpace) {
 					fill(0);
 					noFill();
