@@ -18,22 +18,13 @@ public class OpticalMarkReader {
 	 * @return
 	 */
 	public AnswerSheet processPageImage(PImage image) {
-		image.filter(PImage.GRAY);
-		ArrayList<PImage> images = PDFHelper.getPImagesFromPdf("/omrtest2.pdf");
-		PImage currentImage;
-		PImage answerKey;
-		int currentImageIndex = 0;
-
-		answerKey = images.get(0);
-		currentImage = images.get(0);
-
+		//image.filter(PImage.GRAY);
 		AnswerSheet answers = new AnswerSheet();
 
 		int topLeftCenterRow = 113;
 		int topLeftCenterCol = 456;
 		int verticalSpace = 37;
 		int horizontalSpace = 37;
-
 		for (int rowImage = topLeftCenterRow; rowImage < 280; rowImage += verticalSpace) {
 			for (int colImage = topLeftCenterCol; colImage < 1000; colImage += horizontalSpace) {
 				answers.addAnswer(determineBubble(topLeftCenterRow, topLeftCenterCol, horizontalSpace,
@@ -92,7 +83,7 @@ public class OpticalMarkReader {
 	}
 
 	public int getPixelAt(int row, int col, PImage image) {
-		image.loadPixels();
+		//image.loadPixels();
 
 		int index = row * image.width + col;
 

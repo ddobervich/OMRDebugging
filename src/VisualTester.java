@@ -22,36 +22,45 @@ public class VisualTester extends PApplet {
 	int w = 1200;
 	int h = 900;
 
-	
 	int topLeftCenterRow = 113;
 	int topLeftCenterCol = 456;
 	int verticalSpace = 37;
 	int horizontalSpace = 37;
-	
+
 	public void setup() {
 		size(w, h);
 		images = PDFHelper.getPImagesFromPdf("/omrtest2.pdf");
 	}
 
+	public int getPixelAt(int row, int col, PImage image) {
+		int index = row * image.width + col;
+		return (image.pixels[index]) & 255;
+	}
+
 	public void draw() {
 		background(255);
+
 		if (images.size() > 0) {
 			current_image = images.get(currentImageIndex);
-			
-			image(current_image, 0, 0);			// display image i
+
+			image(current_image, 0, 0); // display image i
 			fill(0);
-			for (int rowImage = topLeftCenterRow; rowImage < 800; rowImage += verticalSpace) {
-				for (int colImage = topLeftCenterCol; colImage < 1000; colImage += horizontalSpace) {
-					fill(0);
-					noFill();
-					rect(rowImage, colImage, verticalSpace, horizontalSpace);
-				}
-			}
-			text(mouseX + " " + mouseY, 30, 30);
+
 		}
+		for (int rowImage = topLeftCenterRow; rowImage < 800; rowImage += verticalSpace) {
+			for (int colImage = topLeftCenterCol; colImage < 1000; colImage += horizontalSpace) {
+				fill(0);
+				noFill();
+				rect(rowImage, colImage, verticalSpace, horizontalSpace);
+			}
+		}
+		text("color: " + getPixelAt(mouseX, mouseY, current_image), mouseX + 20, mouseY + 20);
+		text(mouseX + " " + mouseY, 30, 30);
 	}
 
 	public void mouseReleased() {
-		currentImageIndex = (currentImageIndex + 1) % images.size();			// increment current image
+		currentImageIndex = (currentImageIndex + 1) % images.size(); // increment
+																		// current
+																		// image
 	}
 }
